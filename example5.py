@@ -19,3 +19,37 @@ def calculate_price(customer_type, price):
 # 
 #  besitzen.
 
+from abc import ABC, abstractmethod
+
+
+class Customer(ABC):
+
+    @abstractmethod
+    def calculate_price(self, price):
+        pass
+
+
+class PremiumCustomer(Customer):
+    def calculate_price(self, price):
+        return price * 0.9
+
+class StudentCustomer(Customer):
+    def calculate_price(self, price):
+        return price * 0.8
+
+class BusinessCustomer(Customer):
+    def calculate_price(self, price):
+        return price * 0.85
+
+class RegularCustomer(Customer):
+    def calculate_price(self, price):
+        return price
+
+
+def checkout(customer, price):
+    return customer.calculate_price(price)
+customer1 = PremiumCustomer()
+customer2 = StudentCustomer()
+
+price1 = checkout(customer1, 100)
+price2 = checkout(customer2, 100)

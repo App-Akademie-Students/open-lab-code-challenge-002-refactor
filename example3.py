@@ -13,3 +13,20 @@ def can_place_order(user, cart):
 # Refactore die Funktion so, dass die verschachtelten `if`-Blöcke verschwinden 
 # und die Logik leichter lesbar wird. Das Verhalten soll gleich bleiben.
 
+def can_place_order(user, cart):
+    if user is None:
+        return False
+
+    if not user["active"]:
+        return False
+
+    if not cart:
+        return False
+
+    if user["age"] < 18:
+        return False
+
+    return True
+
+# Guard Clauses schützen den 
+# eigentlichen Programmablauf vor Sonderfällen und reduzieren verschachtelte if-Blöcke.
